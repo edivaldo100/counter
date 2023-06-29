@@ -6,6 +6,8 @@ import {
     increment,
     decrement,
     reset,
+    customIncrement,
+    changeTexto,
     // reset,
     // customIncrement,
     // changeChannelName,
@@ -30,7 +32,23 @@ import {
         ...state,
         counter: 0,
       };
+    }),
+    on(customIncrement, (state, action) => {
+      console.log(action);
+      return {
+        ...state,
+        counter: state.counter + action.count,
+      };
+    }),
+    on(changeTexto, state => {
+     
+      return {
+        ...state,
+        texto: textoss[getRandomInt(3)],
+      };
     })
+
+
     // ,
     // on(customIncrement, (state, action) => {
     //   console.log(action);
@@ -50,3 +68,8 @@ import {
   export function counterReducer(state = initialState, action: Action) {
     return _counterReducer(state, action);
   }
+  export var textoss = ['novo texto pelo redux','outro texto pelo redux','aqui o texto pelo redux'];
+  export function getRandomInt(max: number) {
+    return Math.floor(Math.random() * max);
+  }
+  
